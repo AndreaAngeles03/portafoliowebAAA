@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Bienvenida del usuario</title>
+
+  <style>
+    p{
+      color: green;
+    }
+  </style>
+
+  <script type = "text/javascript">
+
+  function alertName() {
+    var grados1= parseInt(document.forms[0].grados.value);
+    var opcion= document.forms[0].opcion.value;
+    var numero1 = 1;
+
+      if(opcion=="k"){
+        numero1= grados1 + 273.15;
+        document.write("<p>" , numero1, "</p>");
+      }else{
+        numero1= grados1 * 1.8 + 32;
+        document.write("<p>" , numero1, "</p>");
+      }
+
+    return true;
+  }
+
+  </script>
+
+</head>
+<body>
+<form id="myform" onsubmit="return alertName();">
+    <p>Grados <input id="grados" name="grados" type="number" /> C°</p>
+    <p>Convertir a
+      <select name="opcion" id="opcion">
+        <option value="k">Kelvin</option>
+        <option value="f">Fahrenheit</option>
+      </select>
+    </p>
+    <p><input type="submit" /></p>
+</form>
+</body>
+</html>

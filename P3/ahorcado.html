@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <script>
+        let adivina = "arboles";
+        let intentos = 6;
+        let contador = 0; 
+
+        function dibujar(){
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+
+            switch (contador) {
+                case 1:
+                    cabeza(ctx);
+                    break;
+                case 2:
+                    brazoIzquierdo(ctx);
+                    break;
+                case 3:
+                    brazoDerecho(ctx);
+                    break;
+                case 4:
+                    cuerpo(ctx);
+                    break;
+                case 5:
+                    piernaIzquierda(ctx);
+                    break;
+                case 6:
+                    piernaDerecha(ctx);
+                    break;
+            }
+        }
+
+        function cabeza(ctx){
+            ctx.beginPath();
+            ctx.arc(200, 70, 50, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        function brazoIzquierdo(ctx){
+            ctx.beginPath();
+            ctx.moveTo(200, 120); 
+            ctx.lineTo(150,160); 
+            ctx.stroke();
+        }
+
+        function brazoDerecho(ctx){
+            ctx.beginPath();
+            ctx.moveTo(200, 120); 
+            ctx.lineTo(250,160); 
+            ctx.stroke();
+        }
+
+        function cuerpo(ctx){
+            ctx.beginPath();
+            ctx.moveTo(200, 120); 
+            ctx.lineTo(200,300); 
+            ctx.stroke();
+        }
+
+        function piernaIzquierda(ctx){
+            ctx.beginPath();
+            ctx.moveTo(200, 300); 
+            ctx.lineTo(160,350); 
+            ctx.stroke();
+        }
+
+        function piernaDerecha(ctx){
+            ctx.beginPath();
+            ctx.moveTo(200, 300); 
+            ctx.lineTo(240,350); 
+            ctx.stroke();
+        }
+
+        function limpiar(){
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            contador = 0;
+        }
+
+        function palabra(event){
+            event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+            const adivinado = document.getElementById("adivina").value.toLowerCase();
+            if (adivinado === adivina) {
+                alert("¡Felicidades! ¡Has adivinado la palabra correctamente!");
+                limpiar();
+            } else {
+                contador++;
+                if (contador >= intentos) {
+                    alert("Has perdido. La palabra correcta era '" + adivina + "'.");
+                    limpiar();
+                } else {
+                    dibujar();
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Ahorcado</h1>
+    <canvas id="myCanvas" width="400" height="400" style="border: 1px solid #000000;"></canvas>
+    <form onsubmit="palabra(event)">
+        <label for="adivina">Ingresa una palabra:</label>
+        <input type="text" id="adivina" name="adivina">
+        <button type="submit">Enviar</button>
+    </form>
+    <p><button onclick="limpiar()">Limpiar</button></p>
+</body>
+</html>

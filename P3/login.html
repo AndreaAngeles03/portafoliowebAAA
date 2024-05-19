@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Login</title>
+
+  <style>
+    p{
+      color: blueviolet;
+    }
+  </style>
+
+  <script type = "text/javascript">
+
+  function validar() { 
+
+    var user1=document.forms[0].usuario.value;
+    var password1=document.forms[0].password.value;
+    if(user1=="admin" && password1=="admin"){
+        document.write("<p>acceso permitido</p>")
+        document.write("<a href=https://portafolioweb1aaa.000webhostapp.com/>Portafolio</a>");
+    } else{
+        document.write("<p>acceso negado</p>");
+        document.write("<a href='login.html'/>Volver</a>");
+    }
+    
+    return true;
+
+  }
+
+  </script>
+
+</head>
+<body>
+
+<form id="myform" onsubmit="return validar();">
+    <p>Usuario <input id="usuario" name="usuario" type="text" /></p>
+    <p>Contraseña <input id="password" name="password" type="password" /></p>
+    <p><input type="submit" /></p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+function aleatorios(){
+    num=yArray1.length;
+    for(i=0; i<num; i++){
+        yArray1[i]=Math.floor(Math.random()*10)+1;
+    }
+    return true;
+}
+
+const xValues = ["Fisica I", "Matematicas I", "Programacion I", "Nucleo II", "Web I", "Ingles-PET II"];
+var yArray1 = [0,0,0,0,0,0];
+
+const barColors = ["red", "green","blue","orange","brown", "yellow"];
+
+aleatorios();
+new Chart("myChart", {
+ type: "bar",
+ data: {
+  labels: xValues,
+  datasets: [{
+   backgroundColor: barColors,
+   data: yArray1,
+  }]
+ },
+ options: {
+  legend: {display: false},
+  title: {
+   display: true,
+   text: "Parcial 3"
+  }
+ }
+});
+</script>
+
+</body>
+
+</html>

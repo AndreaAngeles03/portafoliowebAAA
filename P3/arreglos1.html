@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Arreglos</h1>
+        <h2>ordenación</h2>
+        <p>Click en la opcion</p>
+
+        <button onclick="generaarreglo()">Genera arreglo</button>
+        <button onclick="imprimearreglo()">Imprime arreglo</button>
+        <button onclick="ordenaarreglo()">Ordena arreglo</button>
+        <button onclick="reversa()">Arreglo Invertido</button>
+        <button onclick="arreglotabla()">Arreglo en tabla</button>
+        <button onclick="agrega()">Agregar elemento</button>
+        <button onclick="quita()">Quitar elementos</button>
+
+        <p id="demo"></p>
+
+        <script>
+            var arreglo = [0, 0, 0, 0, 0, 0];
+            function generaarreglo() {
+                for(i=0; i<6; i++){
+                    arreglo[i]=Math.floor(Math.random()*100)+1;
+                }    
+            }
+
+            function imprimearreglo() {
+                document.getElementById("demo").innerHTML = "Arreglo resultante: "+arreglo;
+            }
+
+            function ordenaarreglo() {
+                arreglo=arreglo.sort(function(a, b){return a - b});
+                document.getElementById("demo").innerHTML = "Arreglo resultante: "+arreglo;
+            }
+
+            function reversa(){
+                arreglo=arreglo.reverse();
+                document.getElementById("demo").innerHTML = "Arreglo resultante: "+arreglo;
+            }
+
+            function arreglotabla() {
+                var texto="";
+                var n=arreglo.length;
+                texto=texto+"<table border=1><tr>";
+                for(i=0;i<n;i++){
+                texto=texto+"<td>"+arreglo[i]+"</td>";
+                } 
+                texto=texto+"</tr></table>";
+                document.getElementById("demo").innerHTML=texto;
+            }
+
+            function agrega(){
+                var elemento=Math.floor(Math.random()*100+1);
+                var n=arreglo.length;
+                arreglo.push(elemento);
+            }
+            function quita(){
+                var n=arreglo.length;
+                arreglo-arreglo.pop();
+            }
+        </script>
+
+
+    </body>
+</html>

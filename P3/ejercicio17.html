@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<body>
+    <h1>Gráfica Seno</h1>
+    <div id="myPlot" style="width:100%;max-width:700px"></div>
+    <form id="myform" onsubmit="return grafsen();">
+        <p>Inicio <input id="inicio" name="inicio" type="number" /></p>
+        <p>Fin <input id="fin" name="fin" type="number" /></p>
+        <p><input type="submit"/></p>
+    </form>
+
+    <script>
+        function grafsen(){
+            let exp = "Math.sin(x)";
+            var inicio = parseInt(document.getElementById("inicio").value);
+            var fin = parseInt(document.getElementById("fin").value);
+            
+            if (inicio === fin) {
+                alert("Los valores de inicio y fin deben ser diferentes.");
+                return false;
+            }
+
+            const xValues = [];
+            const yValues = [];
+
+            for (let x = inicio; x <= fin; x += 0.1) {
+            xValues.push(x);
+            yValues.push(eval(exp));
+            }
+
+            const data = [{x:xValues, y:yValues, mode:"lines"}];
+            const layout = {title: "y = " + exp};
+            Plotly.newPlot("myPlot", data, layout);
+            return false;
+        }
+    </script>
+</body>
+</html>
